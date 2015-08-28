@@ -1,0 +1,94 @@
+Recursion
+1. Permutation
+
+input: return list(result), input array(a), step(step), process element(e), duplicate array(d)(if necessary)
+procedure:
+	//for integer array
+	if(step==a.size())
+		Add e to result;
+		return;
+	for i from 0 to a.size()
+		//Check duplicate
+		if i>0, a[i]=a[i-1], d[i-1]=1 
+			continue
+		d[i]=1;
+		add a[i] to e
+		call dfs(result, a, step+1,e,d)
+		delete the last element in e
+		d[i]=0;
+
+	//for string
+	if(step==a.length())
+		Add s to result
+		return;
+	for i from step to s.length
+		swap(a[step],a[i])
+		call dfs(result,a,step+1)
+		swap(a[step],a[i])
+
+2. Subset
+Input: result, a(sorted), e, step
+Procedure:
+	for i from step to a.size
+		Add a[i] to e
+		Add e to result
+		Call dfs(rsult,a,e,i+1)
+		Delete the last element in e
+		while(i<a.size && a[i]=a[i-1]) i++;
+
+Bianry Tree
+1. Recover Binary Search Tree (O(n) time, O(1) space)
+Input: root node
+Procedure:
+	Initialize prev=n1=n2=p=null, curr=root
+	while curr != null
+	    if curr does not have left subtree
+		if prev exists and prev.val>curr.val
+		    if n1=null
+			n1=prev
+		    n2=curr
+		update prev, and move curr to its right
+	   else
+		set p to curr's left child
+		find inorder predecessor of p
+		if right child of inorder predecessor of p does not exist
+		    set p's right child as curr
+		    move curr to its left child
+		else
+		    set p's right child to null
+		    if prev exists and prev.val>curr.val
+		    if n1=null
+			n1=prev
+		    n2=curr
+		update prev, and move curr to its right
+	Swap value of n1 and n2
+
+Word Break
+1. Check if an input string a break in dictionary
+	bool[n+1] w, initialized false
+	for i from 1 to n
+	    if w[i]=false, and s.substring(0,i) is in dictionary
+		w[i]=true
+ 	    if w[i]=true
+		if reaches the last character, return true
+		for j from i+1 to n
+		    if w[j]=false, and s.substring(i,j) is in the dictionary
+			w[j]=true
+		    if reaches the last character and w[j]=true
+			return true
+	return false
+
+2. Return all possible word breakdowns
+	bool[n+1] w, initialized true
+	backtracking input: list(result), w, s, str(stringbuffer), step(0), length(s.length)
+	if reaches the end of s
+	    Add str.substring(0,str.length-1) to result //Delete trailing spaces
+	    return
+	for i from step to length-1
+	    if w[i+1]=true, and s.substring(step, i+1) is in dictionary
+		Add s.substring(step, i+1) and a trailing space to str
+		Record instantaneous length of result
+		call func with i+1
+		if result.size=recorded length
+		    w[i+1]=false;
+		Trim size of str by s.substring(step, i+1)+1 
