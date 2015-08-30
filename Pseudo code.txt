@@ -92,3 +92,23 @@ Word Break
 		if result.size=recorded length
 		    w[i+1]=false;
 		Trim size of str by s.substring(step, i+1)+1 
+
+Paint House II
+Input int[][] costs
+Procedure:
+	Initialize m=costs.size, n=costs[0].size
+	Create dp[n]
+	for i from 0 to m-1
+	    Save previous minimum costs (prev1) and second minimum costs(prev2)
+	    Declare current minimum (curr1) and second minimum cost (curr2) as INT_MAX
+	    for j from 0 to n-1
+		if dp[j]=prev1
+		    Set dp[j]=costs[i][j]+prev2
+		else 
+		    Set dp[j]=costs[i][j]+prev1
+		if dp[j]<=curr1
+		    curr2=curr1
+		    curr1=dp[j]
+		else
+		    curr2=min(curr2,dp[j])
+	return curr1
