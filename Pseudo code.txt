@@ -112,3 +112,67 @@ Procedure:
 		else
 		    curr2=min(curr2,dp[j])
 	return curr1
+
+Palindrome Permutation II
+Procedure:
+	1. key method
+	Input: String s
+	Create result(vector/list), str(string), odd(int), hmap(hash map<char,int>)
+	for each character c in s
+	    hmap[c]++;	//Count times of appearance of distinct characters
+	for each key in hmap
+	    if(hmap[key] is odd)
+		odd++;
+		if(odd==2) return result;	//No palindrome permutation
+		Add key to str;	//Save character that appear odd times
+	Call dfs
+	return result
+	
+	2. dfs
+	Input: result(vector/list), str(string), hmap(hash map<char,int>, int odd
+	Create: flag(bool)=true
+	for each key in hmap
+	    if hmap[key]>1
+		set flag to false;	//Still have unoperated character
+		hmap[key]-2;	//operate each key in pairs
+		add key to str;
+		call dfs(result,str,hmap,odd)
+		hmap[key]+2;	//recover all keys in hash map for next permutation
+	if flag is true	//All characters have been operated
+	    Create s(string)
+	    s=str.substring from odd to str.length
+	    reverse s
+	    add both s and str to result
+
+Populating next right pointer II
+Input: TreeLinkNode root
+Procedure:
+	Create q(node,level)(queue<pair<TreeLinkNode,int>>), level=0
+	Add (root,0) to q
+	Initialize node as root	
+	while(true)
+	    Set level to q.front.level+1
+	    if node has	left child
+		add node's left child to q
+	    if node has right child
+		add node's right child to q
+	    if reaches the last node in tree, break
+	    pop front of q to p(Pair)
+	    if p.level equals to q.front.level
+		set p.node's next pointer to q.front.node
+	    else
+		set p.node's next pointer to null
+	    set node's next pointer to q.front.node
+	set node's next pointer to null
+
+Count univalue subtree
+Input root(TreeNode)
+Procedure:
+	Create count=0(int)
+	dfs(root)
+	    if root is null, return true
+	    recursively get l(bool), r(bool)
+	    if l and r and root.left is null or root.val=root.left.val and root.right is null or root.val=root.right.val
+		count++
+		return true
+	    return false

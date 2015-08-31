@@ -1,0 +1,48 @@
+import javax.xml.soap.Node;
+
+public class Solution {
+	public static int countUnivalSubtrees(TreeNode root){
+		if(root==null) return 0;
+		return findUnivalSubtres(root,0);
+	}
+	
+	private static int findUnivalSubtres(TreeNode root, int count){
+		if(root==null) return 0;
+		int leftCount=findUnivalSubtres(root.left,count);
+		int rightCount=findUnivalSubtres(root.right, count);
+		int noSubtrees=1;
+		int leftVal=0, rightVal=0;
+		if(root.left!=null)
+			leftVal = root.left.val;
+		if(root.right!=null)
+			rightVal=root.right.val;
+		if(root.val==rightVal && root.val==leftVal){
+			noSubtrees=leftCount*rightCount+leftCount+rightCount+1;
+			count+=noSubtrees;
+		}
+		else if(root.val==leftVal){
+			noSubtrees=leftCount+1;
+			count+=noSubtrees;
+		}
+		else if(root.val==rightVal){
+			noSubtrees=rightCount+1;
+			count+=noSubtrees;
+		}
+		else count+=noSubtrees;
+		return noSubtrees;
+			
+	}
+	
+	
+	public static void main(String[] args){
+		TreeNode root=new TreeNode(5);
+		root.left=new TreeNode(1);
+		root.right=new TreeNode(5);
+		root.left.left=new TreeNode(5);
+		root.left.right=new TreeNode(5);
+		root.right.right=new TreeNode(5);
+		System.out.println("The binary tree is:");
+		TreeNode.printBinaryTree(root, 0);
+		System.out.println("Number of univalue subtrees: "+countUnivalSubtrees(root));
+	}
+}
