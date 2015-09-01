@@ -1,4 +1,3 @@
-Recursion
 1. Permutation
 
 input: return list(result), input array(a), step(step), process element(e), duplicate array(d)(if necessary)
@@ -26,6 +25,7 @@ procedure:
 		call dfs(result,a,step+1)
 		swap(a[step],a[i])
 
+
 2. Subset
 Input: result, a(sorted), e, step
 Procedure:
@@ -36,8 +36,8 @@ Procedure:
 		Delete the last element in e
 		while(i<a.size && a[i]=a[i-1]) i++;
 
-Bianry Tree
-1. Recover Binary Search Tree (O(n) time, O(1) space)
+
+3. Recover Binary Search Tree (O(n) time, O(1) space)
 Input: root node
 Procedure:
 	Initialize prev=n1=n2=p=null, curr=root
@@ -63,8 +63,8 @@ Procedure:
 		update prev, and move curr to its right
 	Swap value of n1 and n2
 
-Word Break
-1. Check if an input string a break in dictionary
+4. Word Break
+1) Check if an input string a break in dictionary
 	bool[n+1] w, initialized false
 	for i from 1 to n
 	    if w[i]=false, and s.substring(0,i) is in dictionary
@@ -78,7 +78,7 @@ Word Break
 			return true
 	return false
 
-2. Return all possible word breakdowns
+2) Return all possible word breakdowns
 	bool[n+1] w, initialized true
 	backtracking input: list(result), w, s, str(stringbuffer), step(0), length(s.length)
 	if reaches the end of s
@@ -93,7 +93,7 @@ Word Break
 		    w[i+1]=false;
 		Trim size of str by s.substring(step, i+1)+1 
 
-Paint House II
+5. Paint House II
 Input int[][] costs
 Procedure:
 	Initialize m=costs.size, n=costs[0].size
@@ -113,7 +113,7 @@ Procedure:
 		    curr2=min(curr2,dp[j])
 	return curr1
 
-Palindrome Permutation II
+6. Palindrome Permutation II
 Procedure:
 	1. key method
 	Input: String s
@@ -144,7 +144,7 @@ Procedure:
 	    reverse s
 	    add both s and str to result
 
-Populating next right pointer II
+7. Populating next right pointer II
 Input: TreeLinkNode root
 Procedure:
 	Create q(node,level)(queue<pair<TreeLinkNode,int>>), level=0
@@ -165,7 +165,7 @@ Procedure:
 	    set node's next pointer to q.front.node
 	set node's next pointer to null
 
-Count univalue subtree
+8. Count univalue subtree
 Input root(TreeNode)
 Procedure:
 	Create count=0(int)
@@ -176,3 +176,100 @@ Procedure:
 		count++
 		return true
 	    return false
+
+9. Factors Combination
+Input n(int)
+Procedure:
+	dfs(allFactors(2d vector/list), factors(1d vector/list), n(int), start(int)
+	if(n<=1)
+	    if more than 1 element is in factors
+		add factors to allFactors
+	    return;
+	for i from start to n
+	    if n can be divided by i
+		add i to factors
+		call dfs(allFactors, factors, n/i, i)
+		delete last element in factors
+
+10. Verify Preorder Sequence in BST
+Input: preorder(int[])
+Procedure:
+	Create stack(Stack<int>), last(int, initialized as -1)
+	for i from 0 to preorder.length-1
+	    if cuurent element is less than last
+		return false
+	    while current element is greater than top of stack
+		pop top of stack to last
+	    push current element to stack
+	return true
+
+11. Find k nodes whose value are closest to target
+Procedure:
+    1) closestKValues
+        Input: root(TreeNode), target(double), k(int)
+        Create two stacks: predecessor, successor; result(vector/list)
+	call inorderTraverse(root,target,false(forward),predecessor)
+	call inorderTraverse(root,target,true(reverse),successor)
+	while k from k to 1
+	    if predecessor is empty
+		pop top of successor to result
+	    else if successor is empty
+		pop top of predecessor to result
+	    else 
+		if abs of target-predecessor.top is less than abs of target-successor.top
+		    pop top of predecessor to result
+		else
+		    pop top of succesor to result
+	return result
+
+    2) Inorder Traverse
+        Input: node(TreeNode), target(double), reverse(bool), stack(Stack<int>)
+        Procedure:
+	    traverse left(forward)/right(reverse) subtree
+	    if forward and current node value is greater than target or reverse and current node value is less than or equal to target
+		return		//Found the crossover point
+	    traverse right(forward)/left(reverse) subtree  
+
+12. Largest Rectangle Area in Histogram
+Procedure: largestRectangleArea
+Input: height(int[])
+	Create stack(Stack<int>), i=0(int), maxArea=int_min(int)
+	while i from 0 to height.size-1
+	    if stack is empty of height[i] is not less than top of stack
+		push i to stack
+		increment i
+		continue
+	    pop top of stack to j
+	    if stack is empty
+		set width to i
+	    else
+		set width to i-stack.top-1
+	    update maxArea comparing to height[j]*width
+	while stack is not empty
+	    pop top of stack to j
+	    if stack is empty
+		set width to i
+	    else
+		set width to i-stack.top-1
+	    update maxArea comparing to height[j]*width
+	return maxArea
+	
+13. Missing Range
+Method/Function: missingRange
+Input: nums(int[]), lower(int), upper(int)
+	Create range(vector/list), prev=0(int)
+	if nums is empty
+		add (lower,upper) to range
+	if nums[0] is greater than lower
+		add (lower, nums[0]-1) to range
+		prev=nums[0]
+	else 
+		prev=lower
+	for each num in nums
+		if num-prev>1 
+			add (prev+1, num-1) to range
+		prev=num
+	if upper is greater than prev
+		add (prev+1, upper) to range
+	return range
+	

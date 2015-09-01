@@ -1,0 +1,48 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Solution {
+	public static List<String> findMissingRanges(int[] nums, int lower, int upper){
+		List<String> range=new ArrayList<>(); 
+		int n=nums.length;
+		if(n==0) return range;
+		if(upper<nums[0] || lower>nums[n-1]){
+			StringBuffer str=new StringBuffer();
+			str.append(lower).append("->").append(upper);
+			range.add(str.toString());
+		}
+		
+		int i=0;
+		StringBuffer str=new StringBuffer();
+		while(i<n-1){
+			if(nums[i]<lower){
+				i++;
+				continue;
+			}
+			if(nums[i]==nums[i+1] && nums[i]<=upper) i++;
+			else{
+				int start=nums[i]+1;
+				int end=nums[i+1]-1;
+				if(start==end)
+					str.append(start);
+				else
+					str.append(start).append("->").append(end);
+				i++;
+			}
+			range.add(str.toString());
+		}
+		
+		if(upper>nums[n-1])
+			str.append(nums[n-1]+1).append("->").append(upper);
+		range.add(str.toString());
+		return range;
+	}
+	
+	public static void main(String[] args){
+		int lower=0;
+		int upper=99;
+		int[] nums={0,1,3,50,75};
+		System.out.println("The missing range from "+lower+" to "+upper+" in "+Arrays.toString(nums)+" is: "+Arrays.deepToString(findMissingRanges(nums, lower, upper).toArray()));
+	}
+}
