@@ -1,0 +1,16 @@
+
+public class Solution {
+	//Strobogrammatic Number I
+	public static boolean isStrobogrammatic(String num){
+		
+	}
+		
+	//Main Method
+	public static void main(String[] args){
+		String num="609";
+		if(isStrobogrammatic(num))
+			System.out.println(num+" is a strobogrammatic number.");
+		else
+			System.out.println(num+" is not a strobogrammatic number.");
+	}
+}

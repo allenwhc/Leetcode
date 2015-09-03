@@ -1,0 +1,12 @@
+
+public class Solution {
+	//Strobogrammatic Number I
+	public static boolean isStrobogrammatic(String num){
+		
+	}
+		
+	//Main Method
+	public static void main(String[] args){
+		
+	}
+}

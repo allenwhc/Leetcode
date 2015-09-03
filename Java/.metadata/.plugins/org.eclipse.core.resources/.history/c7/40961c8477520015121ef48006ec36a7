@@ -1,0 +1,37 @@
+
+public class Solution {
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int x) {
+			val=x;
+			next=null;
+		}
+		
+		public static void printList(ListNode head){
+			while(head!=null){
+				System.out.print(head.val);
+				head=head.next;
+				if(head!=null) System.out.print("->");
+			}
+			System.out.println();
+		}
+		
+		public static ListNode newNode(int x, ListNode prev){
+			ListNode node=new ListNode(x);
+			prev.next=node;
+			prev=prev.next;
+			return node;
+		}
+	}
+	
+	public static void main(String[] args){
+		ListNode head=ListNode.newNode(4, null);
+		ListNode n1=ListNode.newNode(2, head);
+		ListNode n2=ListNode.newNode(3, n1);
+		ListNode n3=ListNode.newNode(7, n2);
+		ListNode n4=ListNode.newNode(5, n3);
+		ListNode n5=ListNode.newNode(8, n4);
+		ListNode.printList(head);
+	}
+}

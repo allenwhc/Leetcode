@@ -1,0 +1,103 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class Solution {
+	private static HashMap<Character, Character> hmap=new HashMap<>();
+	public Solution(){
+		hmap.put('0', '0');
+		hmap.put('1', '1');
+		hmap.put('8', '8');
+		hmap.put('9', '6');
+		hmap.put('6', '9');
+	}
+	//Strobogrammatic Number I
+	public static boolean isStrobogrammatic(String num){
+		int len=num.length();
+		String stroboCombination="00 11 88 696";
+		int start=0;
+		int end=len-1;
+		while(start<=end){
+			if(!stroboCombination.contains(num.charAt(start)+""+num.charAt(end)))
+				return false;
+			start++;
+			end--;
+		}
+		return true;
+	}
+
+	//Strobogrammatic Number II
+	public static List<String> findStrobogrammatic(int n) {
+        List<String> result=new ArrayList<>();
+        StringBuffer str=new StringBuffer();
+        str.setLength(n);
+        generateStrobogrammatic(result, str, 0, n-1);
+        return result;
+    }
+	
+	private static void generateStrobogrammatic(List<String> result, StringBuffer str, int left, int right){
+		if(left>right){
+			result.add(new String(str.toString()));
+			return;
+		}
+		else if(left==right){
+			str.setCharAt(left, '0');
+			generateStrobogrammatic(result, str, left+1, right-1);
+			str.setCharAt(left, '1');
+			generateStrobogrammatic(result, str, left+1, right-1);
+			str.setCharAt(left, '8');
+			generateStrobogrammatic(result, str, left+1, right-1);
+		}
+		else{
+			if(left!=0){
+				str.setCharAt(left, '0');
+				str.setCharAt(right, '0');
+				generateStrobogrammatic(result, str, left+1, right-1);
+			}
+			
+			str.setCharAt(left, '1');
+			str.setCharAt(right, '1');
+			generateStrobogrammatic(result, str, left+1, right-1);
+			
+			str.setCharAt(left, '8');
+			str.setCharAt(right, '8');
+			generateStrobogrammatic(result, str, left+1, right-1);
+			
+			str.setCharAt(left, '6');
+			str.setCharAt(right, '9');
+			generateStrobogrammatic(result, str, left+1, right-1);
+			
+			str.setCharAt(left, '9');
+			str.setCharAt(right, '6');
+			generateStrobogrammatic(result, str, left+1, right-1);
+		}
+	}
+	
+	//Strobogrammatic Number III
+	public static int strobogrammaticInRange(String low, String high) {
+		long lowerBound=0;
+		long upperBound=0;
+		for(int i=0; i<low.length(); i++)
+			lowerBound=lowerBound*10+low.charAt(i)-'0';
+		for(int i=0; i<high.length(); i++)
+			upperBound=upperBound*10+high.charAt(i)-'0';
+		int count=0;
+        return count;
+    }
+	
+	//Main Method
+	public static void main(String[] args){
+		String num="9116";
+		if(isStrobogrammatic(num))
+			System.out.println(num+" is a strobogrammatic number.");
+		else
+			System.out.println(num+" is not a strobogrammatic number.");
+		int n=7;
+		System.out.println("All strobogrammatic numbers with "+n+" digits are: "+Arrays.deepToString(findStrobogrammatic(n).toArray()));
+		//System.out.println(findStrobogrammatic(n).size());
+		String low="50";
+		String high="100";
+		System.out.println("There are "+strobogrammaticInRange(low, high)+" strobogrammatic numbers between "+low+" - "+high+" inclusively");
+	}
+}

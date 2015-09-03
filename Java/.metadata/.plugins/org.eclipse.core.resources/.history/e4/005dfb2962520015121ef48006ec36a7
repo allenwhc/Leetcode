@@ -1,0 +1,22 @@
+
+public class Solution {
+	//Strobogrammatic Number I
+	public static boolean isStrobogrammatic(String num){
+		int len=num.length();
+		if(len==0) return true;
+		if(num.charAt(0)=='-') return false; //eliminate all negative numbers
+		int n=0; 
+		for(int i=0; i<len; i++)
+			n=n*10+num.charAt(i)-'0';
+		System.out.println(n);
+	}
+		
+	//Main Method
+	public static void main(String[] args){
+		String num="609";
+		if(isStrobogrammatic(num))
+			System.out.println(num+" is a strobogrammatic number.");
+		else
+			System.out.println(num+" is not a strobogrammatic number.");
+	}
+}

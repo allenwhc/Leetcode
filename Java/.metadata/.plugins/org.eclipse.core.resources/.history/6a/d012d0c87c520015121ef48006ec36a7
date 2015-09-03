@@ -1,0 +1,88 @@
+
+public class Solution {
+	public static class ListNode{
+		int val;
+		ListNode next;
+		public ListNode(int x) {
+			val=x;
+			next=null;
+		}
+		
+		public static void printList(ListNode head){
+			while(head!=null){
+				System.out.print(head.val);
+				head=head.next;
+				if(head!=null) System.out.print("->");
+			}
+			System.out.println();
+		}
+	}
+	
+	public static ListNode sortList(ListNode head){
+		if(head==null || head.next==null) return head;
+		ListNode[] splitHead=new ListNode[2];
+		splitHead=split(head);
+		ListNode p=splitHead[0];
+		ListNode q=splitHead[1];
+		System.out.println(p.val+","+q.val);
+
+		return head;
+	}
+	
+	private static void merge(ListNode head1, ListNode head2){
+		
+	}
+	
+	private static ListNode[] split(ListNode head){
+		ListNode[] result=new ListNode[2];
+		if(head==null || head.next==null){
+			result[0]=head;
+			result[1]=null;
+			return result;
+		}
+		else{
+			ListNode slow=head, fast=head.next;
+			while(fast!=null){
+				fast=fast.next;
+				if(fast!=null){
+					slow=slow.next;
+					fast=fast.next;
+				}
+			}
+			result[0]=head;
+			result[1]=slow.next;
+			slow.next=null;
+			System.out.println(result[0].val+","+result[1].val);
+			return result;
+		}
+	}
+	
+	public static void main(String[] args){
+		ListNode head=new ListNode(4);
+		ListNode print=head,prev=head;
+		prev.next=head;
+		prev=prev.next;
+		ListNode n1=new ListNode(2);
+		prev.next=n1;
+		prev=prev.next;
+		ListNode n2=new ListNode(3);
+		prev.next=n2;
+		prev=prev.next;
+		ListNode n3=new ListNode(7);
+		prev.next=n3;
+		prev=prev.next;
+		ListNode n4=new ListNode(5);
+		prev.next=n4;
+		prev=prev.next;
+		ListNode n5=new ListNode(8);
+		prev.next=n5;
+		prev=prev.next;
+		ListNode n6=new ListNode(6);
+		prev.next=n6;
+		prev=prev.next;
+		System.out.print("The unsorted singly-linked list is: ");
+		ListNode.printList(print);
+		System.out.print("The sorted singly-linked list is: ");
+		ListNode.printList(sortList(head));
+	}
+}
