@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class Solution {
+	//H-Index I
+	public static int hIndex(int[] citations){
+		int n=citations.length;
+		if(n==0) return 0;
+		Arrays.sort(citations);
+		HashMap<Integer, Integer> map=new HashMap<>();
+		List<Integer> hIndices=new ArrayList<>();
+		map.put(citations[0], n);
+		for(int i=1; i<n; i++){
+			if(citations[i]==citations[i-1]) continue;
+			map.put(citations[i], n-i);
+		}
+		for(Integer key:map.keySet()){
+			System.out.println(key+":"+map.get(key));
+		}
+		int result=0;
+		return result;
+	}
+	
+	public static void main(String[] args){
+		int[] citations={3,0,6,1,5};
+		System.out.println("The citations are: "+Arrays.toString(citations));
+		
+	}
+}

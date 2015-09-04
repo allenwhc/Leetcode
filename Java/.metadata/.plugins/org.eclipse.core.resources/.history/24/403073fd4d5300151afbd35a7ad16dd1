@@ -1,0 +1,15 @@
+
+public class Solution {
+	public static boolean isOneEditDistance(String s, String t) {
+        
+    }
+	
+	public static void main(String[] args) {
+		String s="bryant";
+		String t="tryant";
+		if(isOneEditDistance(s, t))
+			System.out.println("'"+s+"' and '"+t+"' are one edit distance apart");
+		else
+			System.out.println("'"+s+"' and '"+t+"' aren't one edit distance apart");
+	}
+}

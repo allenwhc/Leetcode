@@ -406,3 +406,67 @@ Input: nums(int[]), lower(int), upper(int)
 		    Change curr's next node to prev's next node
 		    Change prev's next node to curr
 		return temp's next node
+		
+18. H-index II
+	Procedure: hIndex
+	Input: citations(int[], sorted in ascending order)
+		Create l(0, int), r(n-1, int)
+		while l is less than r
+			Set m to be middle point of l and r
+			if citations[m] is less than n-m
+				Set l to be m+1
+			else
+				Set r to be m
+		if citations[r] equals to 0
+			return 0
+		else 
+			return n-r
+			
+19. Flatten 2D vector (JAVA)
+	Create two private members: x(Iterator<List<Integer>>), y(Iterator<Integer>)
+	1)Method: Vector2D (Constructor)
+	  Input: vec2d(2D List)
+	  	Set x=vec2d.iterator;
+	
+	2)Method: next (int)
+	  Input: null
+	  	call hasNext
+	  	return y.next()
+	
+	3)Method: hasNext (boolean)
+	  Input: null
+	  	while y is null or y doesn't have next and x has next
+	  		y=x.next.iterator
+	  	return y is not null? and y has next
+	  	
+20. Flatten Binary Tree
+	Procedure: convert
+	Input: node(root, TreeNode), prev(null, TreeNode[])
+		if node is null 
+			return
+		Save node's right child to right
+		if prev[0] is not null
+			Set prev[0]'s right child to node
+		Set prev[0] to node
+		Call convert(node.left,prev)
+		Set node's left child to null
+		Call convert(right,prev)
+		
+21. Edit Distance
+	Procedure: minDistance
+	Input: word1(string), word2(string)
+		Create m(word1.len, int), n(word2.len, int)
+		Create dp(int[m][n])
+		Initialize first row and column of dp
+		for i from 0 to m-1
+			for j from 0 to n-1
+				Create c1(word1[i], char), c2(word2[j], char)
+				if c1 equals to c2
+					set dp[i+1][j+1] as dp[i][j]	//No need to operate
+				else
+					Create replacement(dp[i][j]+1, int)	
+					Create deletion(dp[i+1][j]+1, int)
+					Create insertion(dp[i][j+1]+1, int)
+					Find minimum value among replacement, deletion, insertion
+					set dp[i+1][j+1] as the minimum value
+		return dp[m][n]

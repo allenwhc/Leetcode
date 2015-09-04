@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class Solution {
+	public static List<List<String>> groupStrings(String[] strings){
+		List<List<String>> allGroups=new ArrayList<List<String>>();
+		HashMap<String, List<String>> map=new HashMap<>();
+		for(String str: strings){
+			if(!map.containsKey(hashStr(str))){
+				List<String> l=new ArrayList<String>();
+				l.add(str);
+				map.put(hashStr(str), l);
+			}
+			else
+				map.get(hashStr(str)).add(str);
+		}
+		
+		for(String key:map.keySet())
+			System.out.println(key+":"+Arrays.deepToString(map.get(key).toArray()));
+		return allGroups;
+	}
+	
+	private static String hashStr(String s){
+		if(s.length()==0) return "";
+		char base=s.charAt(0);
+		StringBuffer str=new StringBuffer(s);
+		for(int i=0; i<s.length(); i++){
+			char c=s.charAt(i);
+			str.setCharAt(i, (char)('a'+(c-base>=0?c-base:c-base+26)));
+		}
+		return str.toString();
+	}
+	
+	public static void main(String[] args) {
+		String[] strings={"abc","bcd","acef","xyz","az","ba","a","z"};
+		System.out.println("The input string array is: " +Arrays.toString(strings));
+		System.out.println("The grouped shifted strings is: ");
+		for(List<String> l:groupStrings(strings))
+			System.out.println(Arrays.deepToString(l.toArray()));
+	}
+}

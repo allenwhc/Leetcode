@@ -23,10 +23,10 @@
 <fullyQualifiedTypeName name="java.util.HashMap"/>
 <fullyQualifiedTypeName name="java.lang.Character"/>
 <fullyQualifiedTypeName name="java.util.concurrent.ConcurrentHashMap"/>
-<fullyQualifiedTypeName name="Solution.TreeNode"/>
 <fullyQualifiedTypeName name="org.ietf.jgss.Oid"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="sun.security.x509.PrivateKeyUsageExtension"/>
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="Solution.ListNode"/>
+<fullyQualifiedTypeName name="Solution.TreeNode"/>
 </qualifiedTypeNameHistroy>
