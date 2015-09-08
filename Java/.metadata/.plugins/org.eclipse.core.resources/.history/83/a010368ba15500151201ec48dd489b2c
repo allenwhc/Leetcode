@@ -1,0 +1,20 @@
+import java.util.Arrays;
+
+public class Solution {
+	public static int minPathSum(int[][] grid) {
+        int m=grid.length;
+        if(m==0) return 0;
+        int n=grid[0].length;
+        if(n==0) return 0;
+    }
+	
+	public static void main(String[] args) {
+		int[][] grid = { {3,4,10,2},
+				 		{1,7,2,4},
+				 		{5,4,2,3}};
+		System.out.println("The grid is: ");
+		for(int[] row:grid)
+			System.out.println(Arrays.toString(row));
+		System.out.println("The minimum path sum is: "+minPathSum(grid));
+	}
+}

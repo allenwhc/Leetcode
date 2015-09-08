@@ -470,3 +470,61 @@ Input: nums(int[]), lower(int), upper(int)
 					Find minimum value among replacement, deletion, insertion
 					set dp[i+1][j+1] as the minimum value
 		return dp[m][n]
+
+22. Paint Fence
+	Procedure: numWays
+	Input: n(int), k(int)
+		If n is less than 2, or k is 0 
+			return n*k
+		Create same(k, int)	//Stand for # of ways until last fence if previous two fences are of the same color
+		Create diff1(k, int) //Stand for # of ways until second to last fence if previous two fences are of different colors
+		Create diff2(k*(k-1), int)	//Stand for # of ways until last fence if previous two fences are of different colors
+		for i from 2 to n-1
+			Set same to diff2
+			Set diff2 to (k-1)*(diff1+diff2)
+			Set diff1 to same
+		return same+diff2
+		
+23. Minimum Window Substring
+	Procedure: minWindow
+	Input: s(string), t(string)
+		Create m(s.len, int), n(t.len, int)
+		Create two hash table map1(char,int) and map2(char,int)
+		Initialize map2 by counting # of appearance of different chars in t
+		Create left(0, int), min_len(m+1, int), count(0, int)
+		for i from 0 to m-1
+			if s[i] is in map2
+				if s[i] is in map1
+					if map1[s[i] less than map2[s[i]]
+						count++
+					map1[s[i]]++
+				else
+					count++
+					map1[s[i]]=1
+			if count equals to n
+				while s[left] is not in map2, or map1[s[left]] is greater than map2[s[left]]
+					if s[left] is in map1, and map1[s[left]] is greater than map2[s[left]]
+						map1[s[left]]--
+					update s[++left]
+					
+					if i-left+1 is less than min_len
+						update min_len
+						update substring of s from left to i+1 to result
+				
+		return result
+		
+24. Merge Intervals
+	Procedure: merge
+	Input: intervals(vector<Interval>)
+		Create result(null, vector<Interval>)
+		Add intervals[0] to result
+		for i from 1 to n-1
+			if interval[i].start is not greater than result[size-1].end
+				Create a new object inter(Interval)
+				Set inter.start to result[size-1].start
+				Set inter.end to the larger value between interval[i].end and result[size-1].end
+				Delete the last element in result
+				Add inter to result
+			else
+				Add intervals[i] to result
+		return result

@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+public class Solution {
+	public static String minWindow(String s, String t){
+		int m=s.length();
+		int n=t.length();
+		if((m==0) || (n==0) || (m<n) ||(m==n && !s.equals(t))) return "";
+		StringBuffer result=new StringBuffer();
+		HashMap<Character, Integer> charS=new HashMap<>();
+		HashMap<Character, Integer> charT=new HashMap<>();
+		for(int i=0; i<n; i++){
+			char c=t.charAt(i);
+			if(!charT.containsKey(c))
+				charT.put(c, 1);
+			else
+				charT.put(c, charT.get(c)+1);
+		}
+		return result.toString();
+	}
+	
+	public static void main(String[] args) {
+		String s="ADOBECODEBANC";
+		String t="ABC";
+		System.out.println("The minimum window in '"+s+"' containing '"+t+"' is: '"+minWindow(s, t)+"'.");
+	}
+}

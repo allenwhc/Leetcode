@@ -1,0 +1,81 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+	public static class Interval{
+		int start;
+		int end;
+		Interval(){start=end=0;}
+		Interval(int s, int e){start=s;end=e;}
+	}
+	
+	//Insert Interval
+	public static List<Interval> insert(List<Interval> intervals, Interval newInterval){
+		List<Interval> result=new ArrayList<>();
+		int n=intervals.size();
+		if(n==0){
+			result.add(newInterval);
+			return result;
+		}
+		int i=0;
+		while(i<n && intervals.get(i).end<newInterval.start)
+			result.add(intervals.get(i++));
+		
+		//Interval ii=new Interval(intervals.get(i).start,intervals.get(i).end);
+		while(i<n && intervals.get(i).start<=newInterval.end){
+			newInterval.start=Math.min(intervals.get(i).start, newInterval.start);
+			newInterval.end=Math.max(intervals.get(i).end, newInterval.end);
+			i++;
+		}
+		result.add(newInterval);
+		while(i<n)
+			result.add(intervals.get(i++));
+		return result;
+	}
+	
+	//Merge Interval
+	public static List<Interval> merge(List<Interval> intervals){
+		
+	}
+	
+	public static void main(String[] args) {
+		List<Interval> intervals=new ArrayList<Interval>();
+		int[][] setIntervals={{1,2},{3,6},{8,10},{15,18}};
+		System.out.println("Insert Interval: ");
+		for(int i=0; i<setIntervals.length; i++){
+			Interval intv=new Interval(setIntervals[i][0], setIntervals[i][1]);
+			intervals.add(intv);
+		}
+		
+		Interval newInterval=new Interval(9, 16);
+		System.out.print("The original non-overlapping intervals is: ");
+		for(Interval i:intervals){
+			System.out.print("("+i.start+","+i.end+"), ");
+		}
+		System.out.println();
+		System.out.println("The inserting new interval is: ("+newInterval.start+","+newInterval.end+").");
+		System.out.print("The inserted intervals is: ");
+		for(Interval i:insert(intervals, newInterval)){
+			System.out.print("("+i.start+","+i.end+"), ");
+		}
+		System.out.println();
+		System.out.println();
+		System.out.println("Merge Intervals: ");
+		intervals.clear();
+		int[][] setIntervals2={{1,3},{2,6},{8,10},{15,18}};
+		for(int i=0; i<setIntervals2.length; i++){
+			Interval intv=new Interval(setIntervals2[i][0], setIntervals2[i][1]);
+			intervals.add(intv);
+		}
+		System.out.print("The original overlapping intervals is: ");
+		for(Interval i:intervals){
+			System.out.print("("+i.start+","+i.end+"), ");
+		}
+		System.out.println();
+		System.out.print("The merged intervals is: ");
+		for(Interval i:merge(intervals)){
+			System.out.print("("+i.start+","+i.end+"), ");
+		}
+		System.out.println();
+	}
+}

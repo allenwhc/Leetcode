@@ -1,0 +1,23 @@
+
+public class Solution {
+	public static int numWays(int n, int k){
+		if(n==0 || k==0) return 0;
+		else if(k==1) return 1;
+		int countWays;
+		if(k>n){
+			countWays=1;
+			for(int i=0; i<n; i++)
+				countWays*=k;
+		}
+		else{
+			int[] ways=new int[n];
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		int n=3;
+		int k=2;
+		System.out.println("There are "+numWays(n, k)+" ways to paint "+n+" houses in "+k+" colors.");
+	}
+}

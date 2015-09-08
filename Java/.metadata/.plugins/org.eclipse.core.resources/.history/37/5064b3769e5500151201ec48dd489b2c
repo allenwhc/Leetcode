@@ -1,0 +1,44 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+	public static String simplifyPath(String path){
+		List<String> stack=new ArrayList<>();
+		int n=path.length();
+		if(n==0) return "";
+		int i=0;
+		String str=new String();
+		while(i<n){
+			while(i<n && path.charAt(i)=='/' ) i++;
+			if(i==n) break;
+			int start=i;
+			while(i<n && path.charAt(i)!='/' ) i++;
+			int end=i;
+			str=path.substring(start, end);
+			if(str==".."){
+				while(!stack.isEmpty())
+					stack.remove(stack.size()-1);
+			}
+			else if(str!=".")
+				stack.add(str);
+		}
+			
+		if(stack.isEmpty())
+			return "/";
+		StringBuffer result=new StringBuffer();
+		for(int j=0; j<stack.size(); j++)
+			result.append("/").append(stack.remove(i));
+		return result.toString();
+	}
+	
+	public static void main(String[] args) {
+		String path="/home//..//file///leetcode/";
+		System.out.println("The simplified path of '"+path+"' is: "+simplifyPath(path));
+//		String[] paths={"/home//..//file///leetcode/","/a/./b/../../c/"};
+//		String[] res=new String[paths.length];
+//		for(int i=0; i<paths.length; i++)
+//			res[i]=simplifyPath(paths[i]);
+//		for(int i=0; i<paths.length; i++)
+//			System.out.println("The simplified path of '"+paths[i]+"' is: "+res[i]);
+	}
+}
