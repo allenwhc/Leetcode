@@ -1,3 +1,4 @@
+import java.util.HashMap;
 
 public class Solution {
     public static int lengthOfLongestSubstring(String s) {
@@ -8,6 +9,7 @@ public class Solution {
         int max_len=0;
         int i=0, j=0;
         while(i<n){
+        	System.out.println("i="+i+", j="+j+", "+charExist[i]);
         	if(charExist[s.charAt(i)]){
         		max_len=Math.max(max_len, i-j);
         		while(s.charAt(i)!=s.charAt(j)){
@@ -21,7 +23,6 @@ public class Solution {
         		charExist[s.charAt(i)]=true;
         		i++;
         	}
-        //	System.out.println("i="+i+", j="+j+", "+charExist[s.charAt(i-1)]);
         }
         max_len=Math.max(n-j, max_len);
         return max_len;
