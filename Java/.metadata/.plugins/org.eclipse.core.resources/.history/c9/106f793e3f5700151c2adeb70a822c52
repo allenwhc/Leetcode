@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+public class Solution {
+    public static int lengthOfLongestSubstring(String s) {
+        int n=s.length();
+        if(n<=1) return n;
+        HashMap<Character, Integer> map=new HashMap<>();
+        int len=0;
+        for(int i=0; i<n; i++){
+        	char c=s.charAt(i);
+        	if(!map.containsKey(c))
+        		map.put(c, i);
+        	else{
+        		int leftMost=n+1;
+        		for(char key:map.keySet())
+        			leftMost=Math.min(leftMost, map.get(key));
+        		len=Math.max(len, i-leftMost);
+        		map.clear();
+        	}
+        }
+        return len;
+    }
+    
+    public static void main(String[] args) {
+		String s="abcabcbb";
+		System.out.println("Length of longest non-repeating-character substring in '"+s+"' is: "+lengthOfLongestSubstring(s));
+	}
+}

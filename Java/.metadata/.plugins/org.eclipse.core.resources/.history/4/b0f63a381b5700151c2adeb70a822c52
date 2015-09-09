@@ -1,0 +1,28 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Relation {
+	private static List<List<Character>> adjacencyList=new ArrayList<List<Character>>();
+	public Relation(Character[][] matrix){
+		for(Character[] cc:matrix)
+			adjacencyList.add(Arrays.asList(cc));
+	}
+	
+	public static boolean knows(int a, int b){
+		
+	}
+	
+	public class Solution extends Relation{
+		private static char[][] matrix;
+
+		public Solution(){
+			super(matrix);
+		}
+		
+		public static int findCelebrity(int n){
+			
+		}
+	}
+}
+

@@ -1,0 +1,19 @@
+
+public class Solution {
+    public static boolean isIsomorphic(String s, String t) {
+        if(s.length()!=t.length()) return false;
+        
+    }
+    
+    public static void main(String[] args) {
+		String[] s={"egg","foo","paper"};
+		String[] t={"add","bar","title"};
+		
+		boolean[] iso=new boolean[s.length];
+		for(int i=0; i<s.length; i++){
+			iso[i]=isIsomorphic(s[i], t[i]);
+			if(iso[i]) System.out.println("'"+s[i]+"' and '"+t[i]+"' are isomorphic");
+			else System.out.println("'"+s[i]+"' and '"+t[i]+"' aren't isomorphic");
+		}
+	}
+}

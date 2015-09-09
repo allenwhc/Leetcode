@@ -528,3 +528,30 @@ Input: nums(int[]), lower(int), upper(int)
 			else
 				Add intervals[i] to result
 		return result
+		
+25. Basic Calculator
+	Procedure: calculator
+	Input: s(string)
+		Create positive(true, bool), prevPositive(true, bool)
+		Create result(0, int), stack(Stack<bool>)
+		for i from 0 to n-1
+			if s[i] is ' ', continue
+			if s[i] is '+'
+				positive=true
+			else if s[i] is '-'
+				positive=false
+			else if s[i] is '('
+				push prevPositive to stack
+				if positive is false
+					flip prevPositive
+				Set positive to true
+			else if s[i] is ')'
+				pop top of stack to prevPositive
+				Set positive to true
+			else
+				convert characters to integer value
+				if positive is not prevPositive
+					flip value
+				add value to result
+		return result
+					
