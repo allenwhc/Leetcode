@@ -554,4 +554,17 @@ Input: nums(int[]), lower(int), upper(int)
 					flip value
 				add value to result
 		return result
-					
+
+26. Wiggle Sort
+	Procedure: wiggleSort
+	Input: nums(int[])
+		Create flag(true, bool), curr(nums[0], int)
+		for i from 0 to n-2
+			if flag is true and curr>nums[i+1], 	//Odd position needs to be no greater than next even position
+				or flag is false and curr<nums[i+1]	//Even position needs to be no less than next odd position
+				Change ith element to i+1th
+			else
+				Change ith element to curr
+				Update curr to i+1th element
+			Invert flag
+		Set last element to curr			

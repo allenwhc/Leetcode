@@ -1,0 +1,15 @@
+import java.util.Arrays;
+
+public class Solution {
+	public static boolean validTree(int n, int[][] edges){
+		
+	}
+	
+	public static void main(String[] args) {
+		int n=5;
+		int[][] edges={{0,1},{0,2},{0,3},{1,4}};
+		System.out.print("Suppose given "+n+" nodes and connection map ");
+		for(int[] e:edges)
+			System.out.print(Arrays.toString(e)+",");
+	}
+}
