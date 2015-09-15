@@ -1,0 +1,25 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class VersonControl {
+	private static List<Integer> versions=new ArrayList<>();
+	public VersonControl(int n){
+		
+	}
+	public static boolean isBadVersion(int version){
+		return version==1;
+	}
+	public static class Solution extends VersonControl{
+		public Solution(int n){
+			super(n);
+		}
+		public static int firstBadVersion(int n){
+			if(n==0) return 0;
+		}
+	}
+	
+	public static void main(String[] args) {
+		int n=10;
+		System.out.println("First bad version is: "+Solution.firstBadVersion(n));
+	}
+}

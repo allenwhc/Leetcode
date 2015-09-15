@@ -1,0 +1,39 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+
+public class Solution {
+	public static String largestNumber(int[] nums){
+		StringBuffer result=new StringBuffer();
+		String[] strs=new String[nums.length];
+		for(int i:nums)
+			strs[i]=String.valueOf(i);
+		Arrays.sort(strs, new Comparator<String>() {
+
+			@Override
+			public int compare(String o1, String o2) {
+				Integer n1=Integer.valueOf(o1+o2);
+				Integer n2=Integer.valueOf(o1+o1);
+				return n1.compareTo(n2);
+			}
+		});
+		System.out.println(Arrays.toString(strs));
+//		for(int i=1; i<nums.length; i++){
+//			String comb1=String.valueOf(nums[i-1])+String.valueOf(nums[i]);
+//			String comb2=String.valueOf(nums[i])+String.valueOf(nums[i-1]);
+//			if(Integer.valueOf(comb1)<=Integer.valueOf(comb2)){
+//				int temp=nums[i-1];
+//				nums[i-1]=nums[i];
+//				nums[i]=temp;
+//			}
+//	}
+		
+				
+		return result.toString();
+	}
+	
+	public static void main(String[] args) {
+		int[] nums={3,30,34,5,9};
+		System.out.println("The largest number is: "+largestNumber(nums));
+	}
+}
