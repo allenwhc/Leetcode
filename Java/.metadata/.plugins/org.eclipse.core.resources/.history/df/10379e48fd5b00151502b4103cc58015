@@ -1,0 +1,13 @@
+
+public class Solution {
+	public static String shortestPalindrome(String s) {
+        String rev_s=new StringBuffer(s).reverse().toString();
+        return rev_s;
+        
+    }
+	
+	public static void main(String[] args) {
+		String s="aacecaaa";
+		System.out.println("The shortest palindrome string of "+s+" is: "+shortestPalindrome(s));
+	}
+}

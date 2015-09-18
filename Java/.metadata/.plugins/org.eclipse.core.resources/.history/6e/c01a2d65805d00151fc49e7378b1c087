@@ -1,0 +1,8 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+	public List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> index=new ArrayList<>();
+    }
+}

@@ -567,4 +567,19 @@ Input: nums(int[]), lower(int), upper(int)
 				Change ith element to curr
 				Update curr to i+1th element
 			Invert flag
-		Set last element to curr			
+		Set last element to curr		
+		
+27. Distinct Subsequences
+	Procedure: numDistinct
+	Input: s(string), t(string)
+		Create 2d integer array dp(int[m+1][n+1])
+		Initialize first column of dp as 1
+		for i from 1 to m
+			for j from i to n
+				dp[i][j]=dp[i-1][j]
+				if i-1th char in s equals to j-1th char in j
+					dp[i][j]+=dp[i-1][j-1]
+		return dp[m][n]
+		
+28. Wildcard Matching
+	

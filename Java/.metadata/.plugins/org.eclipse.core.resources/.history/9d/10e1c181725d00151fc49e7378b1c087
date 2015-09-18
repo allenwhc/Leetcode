@@ -1,0 +1,19 @@
+
+public class Solution {
+	public static boolean isMatch(String s, String p) {
+        
+    }
+	
+	public static void main(String[] args) {
+		String[] s={"aa","aa","aaa","aa","aa","ab","aab"};
+		String[] p={"a","aa","aa","*","a*","?*","c*a*b"};
+		boolean[] isMathched=new boolean[s.length];
+		for(int i=0; i<s.length; i++){
+			isMathched[i]=isMatch(s[i], p[i]);
+			if(isMathched[i])
+				System.out.println("'"+s[i]+"' and '"+p[i]+"' are matched.");
+			else
+				System.out.println("'"+s[i]+"' and '"+p[i]+"' aren't matched.");
+		}
+	}
+}

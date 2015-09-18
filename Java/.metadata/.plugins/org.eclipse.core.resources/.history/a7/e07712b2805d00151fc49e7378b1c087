@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+
+public class Solution {
+	public static List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> index=new ArrayList<>();
+        int n=words.length;
+        int len=words[0].length();
+        return index;
+    }
+	
+	public static void main(String[] args) {
+		String s="barfoothefoobarman";
+		String[] words={"foo","bar"};
+		System.out.println("The starting indices are: "+Arrays.deepToString(findSubstring(s, words).toArray()));
+	}
+}
