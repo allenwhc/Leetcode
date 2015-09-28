@@ -1,0 +1,43 @@
+
+public class Trie {
+	public static class TrieNode{
+		int val;
+		TrieNode[] children=new TrieNode[26];
+		public TrieNode() {
+			this.val=0;
+			for(int i=0; i<26; i++)
+				children[i]=null;
+		}
+	}
+	
+	private static TrieNode root;
+	public Trie() {
+		// TODO Auto-generated constructor stub
+		root=new TrieNode();
+	}
+	
+	// Inserts a word into the trie.
+    public static void insert(String word) {
+        
+    }
+
+    // Returns if the word is in the trie.
+    public static boolean search(String word) {
+        
+    }
+
+    // Returns if there is any word in the trie
+    // that starts with the given prefix.
+    public static boolean startsWith(String prefix) {
+        
+    }
+    
+    public static void main(String[] args) {
+		Trie trie=new Trie();
+		trie.insert("Mike");
+		trie.insert("Daniel");
+		trie.insert("Kate");
+		System.out.println(trie.search("kate"));
+		System.out.println(trie.search("Brian"));
+	}
+}

@@ -1,0 +1,39 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Solution {
+	public static List<String> addOperators(String num, int target) {
+        List<String> result=new ArrayList<>();
+        if(num.length()==0) return result;
+        add(num, target, result, num.charAt(0)-'0', num.substring(0, 1), 1, 1);
+        return result;
+    }
+	
+	private static void add(String num, int target, List<String> result, int prev, String s, int index, int l){
+		if(index==num.length()){
+			if(l*prev==target)
+				result.add(s);
+			return;
+		}
+		if(prev!=0){
+			System.out.println(index+","+num.length());
+			System.out.println(s);
+			add(num, target, result, prev*10+num.charAt(index)-'0', s+s.substring(index,index+1), index+1, l);
+		}
+		add(num, target, result, num.charAt(index)-'0', s+'*'+num.substring(index, index+1), index+1, l*prev);
+		add(num, target-l*prev, result, num.charAt(index)-'0', s+'+'+num.substring(index, index+1), index+1, 1);
+		add(num, target-l*prev, result, num.charAt(index)-'0', s+'-'+num.substring(index, index+1), index+1, -1);
+		
+	}
+	
+	public static void main(String[] args) {
+		String[] strs={"123","232","105","00","3456237490"};
+		int[] targets={6,8,5,0,9191};
+		System.out.println("The results are: ");
+		for(int i=0; i<strs.length; i++){
+			System.out.println("Expression: "+strs[i]+", target: "+targets[i]);
+			System.out.println("Possible operations are: "+Arrays.deepToString(addOperators(strs[i], targets[i]).toArray()));
+		}
+	}
+}

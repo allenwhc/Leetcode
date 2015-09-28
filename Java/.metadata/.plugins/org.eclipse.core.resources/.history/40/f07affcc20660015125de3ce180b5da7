@@ -1,0 +1,35 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class PeekingIterator implements Iterator<Integer> {
+	private static Iterator<Integer> x;
+ 	public PeekingIterator(Iterator<Integer> iterator){
+		x=iterator;
+	}
+
+	public boolean hasNext() {
+		return x.hasNext();
+	}
+
+	public Integer next() {
+		hasNext();
+		return x.next();
+	}
+	
+	// Returns the next element in the iteration without advancing the iterator.
+	public static Integer peek() {
+	       return x.next();
+	}
+	public static void main(String[] args) {
+		List<Integer> list=new ArrayList<>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		Iterator<Integer> iterator=list.iterator();
+		PeekingIterator p=new PeekingIterator(iterator);
+		System.out.println("Next element: "+p.next());
+		System.out.println("Peek element: "+p.peek());
+		System.out.println("Next element: "+p.next());
+	}
+}
