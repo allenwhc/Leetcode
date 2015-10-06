@@ -1,0 +1,19 @@
+
+public class ValidWordAbbr {
+	public ValidWordAbbr(String[] dictionary){
+		
+	}
+	
+	public static boolean isUnique(String word){
+		
+	}
+	
+	public static void main(String[] args) {
+		String[] dictionary={"deer","door","cake","card"};
+		ValidWordAbbr wordAbbr=new ValidWordAbbr(dictionary);
+		System.out.println(wordAbbr.isUnique("dear"));
+		System.out.println(wordAbbr.isUnique("cart"));
+		System.out.println(wordAbbr.isUnique("cane"));
+		System.out.println(wordAbbr.isUnique("make"));
+	}
+}
