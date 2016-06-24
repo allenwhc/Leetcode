@@ -8,19 +8,17 @@ public:
 
 int Solution::reverse(int x)
 {
-	int reverseResult = 0;
-	int r = 0;
-	while (x !=0)
-	{
-		if (reverseResult != 0 && INT_MAX / reverseResult < 10 && INT_MAX / reverseResult > -10)	//handle overflow
-		{
-			return 0;
-		}
-		r = x % 10;
-		reverseResult = reverseResult * 10 + r;
-		x = x / 10;
-	}
-	return reverseResult;
+	int negative = x<0?-1:1;
+    x = abs(x);
+    int num = 0;
+    while(x){
+        int digit = x%10;
+        int temp = num*10+digit;
+        if((num == INT_MAX/10 && digit>=8) || temp/10 != num) return 0;
+        num = temp;
+        x /= 10;
+    }
+    return negative*num;
 }
 int main(int argc, char*argv[])
 {

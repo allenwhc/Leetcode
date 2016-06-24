@@ -10,60 +10,27 @@ using namespace std;
 
 class Solution {
 public:
-	int myAtoi(string str) {
-		int len = str.length();
-		if (len == 0) return 0;
-		int i = 0;
-		bool isPositive = true;
-		//1. Skip the leading spaces
-		while (i < len && str[i] == ' '){
-			i++;
-			if (i == len - 1) return 0;
-		}
-
-
-		//2. Determine the sign of the number
-		if (str[i] == '+' || str[i] == '-'){
-			isPositive = (str[i] == '+') ? true : false;
-			i++;
-		}
-		//3. Determine if valid conversion exists
-		if (str[i] < '0' || str[i] > '9') return 0;
-		else{
-			vector<int> digits;
-			int num = 0;
-			while (i < len && str[i] >= '0' && str[i] <= '9'){
-				digits.push_back(str[i] - '0');
-				i++;
-			}
-			if (digits.size() > 10){
-				if (isPositive) num = INT_MAX;
-				else num = INT_MIN;
-				return num;
-			}
-			else if (digits.size() == 10){
-				for (int i = 0; i < digits.size() - 1; i++)
-					num = num * 10 + digits[i];
-				num = num * 10;
-				if (isPositive && num == 2147483640 && digits[digits.size() - 1] > 7)
-					num = INT_MAX;
-				else if (!isPositive && num == 2147483640 && digits[digits.size() - 1] > 8)
-					num = INT_MIN;
-				else{
-					num = num + digits[digits.size() - 1];
-					if (!isPositive) num = -num;
-				}
-				return num;
-			}
-			else{
-				for (int i = 0; i < digits.size(); i++)
-					num = num * 10 + digits[i];
-				if (!isPositive) num = -num;
-				return num;
-			}
-		}
-
-	}
+    int myAtoi(string str) {
+        if(str.empty()) return 0;
+        int negative = 1;
+        int num = 0;
+        int s = str.find_first_not_of(' '), e = str.find_last_not_of(' ');
+        str = str.substr(s, e-s+1); //trim leading and trailing ' '
+        for(int i=0; i<str.size(); i++){
+            if(str[i] == '+' || str[i] == '-'){
+                if(i==0) negative = str[i] == '-'? -1:1;
+                else return negative*num;
+            }
+            else if(str[i] >= '0' && str[i] <= '9'){
+                int cum = num*10 + (str[i] - '0');
+                if(num >= INT_MAX/10 && str[i]-'0'>=8 || cum/10 != num)
+                    return negative==1?INT_MAX:INT_MIN;
+                num = cum;
+            }
+            else return negative*num;
+        }
+        return negative*num;
+    }
 };
 
 void main(int argc, char *argv[]){
